@@ -9,6 +9,7 @@ function createBCP () {
     const ipfsHash = 'QmZmqLskJmghru919cvU4qSy3L5vc1S2JdzsUXrM17ZqT9'
     const url = 'http://example.com/image.png'
     const waifuId = 'ec8a11c0d3b0c2c484e5abdd28af70d66206a5cfbf82d888729c53fcacf8d712'
+    const sipUri = 'sip:john@example.com'
     const bcp = new BCP()
 
     // Simple text saved to the blockchain
@@ -36,10 +37,16 @@ function createBCP () {
     console.log(`url: ${JSON.stringify(parsed.data.url.toString(), null, 2)}`)
 
     // Same image, BCP automatically detected
-    opReturn = bcp.createFromString(url)
+    opReturn = bcp.createFromString(ipfsHash)
     console.log(`OP_RETURN: ${JSON.stringify(opReturn.toString('hex'), null, 2)}`)
     parsed = bcp.parse(opReturn)
-    console.log(`url: ${JSON.stringify(parsed.data.url.toString(), null, 2)}`)
+    console.log(`url: ${JSON.stringify(parsed.data.hash.toString(), null, 2)}`)
+
+    // SIP URI for voice call
+    opReturn = bcp.createAudio(BCP_SRC_URL, sipUri)
+    console.log(`OP_RETURN: ${JSON.stringify(opReturn.toString('hex'), null, 2)}`)
+    parsed = bcp.parse(opReturn)
+    console.log(`sip: ${JSON.stringify(parsed.data.url.toString(), null, 2)}`)
   } catch (error) {
     console.error('error in createBCP: ', error)
   }

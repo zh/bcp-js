@@ -50,4 +50,10 @@ describe('PARSER', () => {
   expect(p.source).to.equal(BCP_SRC_URL)
   expect(p.data.url).to.equalBytes(Buffer.from(creatorTests.url))
 
+  // SIP URI for voice call
+  expect(() => bcp.parse(parserTests.sip)).to.not.throw()
+  p = bcp.parse(parserTests.sip)
+  expect(p.type).to.equal(BCP_TYPE_AUDIO)
+  expect(p.source).to.equal(BCP_SRC_URL)
+  expect(p.data.url).to.equalBytes(Buffer.from(creatorTests.sip))
 })

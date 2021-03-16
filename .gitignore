@@ -4,6 +4,7 @@ node_modules/*
 coverage/
 
 dist/*
+examples.local/
 .env
 config.js
 __tests__

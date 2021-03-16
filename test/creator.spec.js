@@ -41,4 +41,9 @@ describe('CREATOR', () => {
   expect(() => bcp.createImage(BCP_SRC_URL, creatorTests.url)).to.not.throw()
   opReturn = bcp.createImage(BCP_SRC_URL, creatorTests.url)
   expect(opReturn).to.equalBytes(Buffer.from(parserTests.url, 'hex'))
+
+  // SIP URI for voice call
+  expect(() => bcp.createAudio(BCP_SRC_URL, creatorTests.sip)).to.not.throw()
+  opReturn = bcp.createAudio(BCP_SRC_URL, creatorTests.sip)
+  expect(opReturn).to.equalBytes(Buffer.from(parserTests.sip, 'hex'))
 })
