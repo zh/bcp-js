@@ -179,8 +179,16 @@ You can see more usage examples in the [examples directory](examples/).
 
 SLP on BCH blockchain providing pretty mature infrastrucure for working with NFT tokens - grouping (parent+children), indexing etc. There is no need to invite the same for the BCPs. Just **create NFT with documentUri pointing to BCP** and all these services can be used for working with the data, pointed by BCP. This will also provide ownership prove of the digital content.
 
-There is already a proposal for adding several *OP_RETURN* data to one transaction. This will make connecting NFT to the BCP pointed data even easier - one *OP_RETURN* for the SLP and one for the BCP!
+There is already a [proposal for adding several OP_RETURN data to one transaction](https://bitcoincashresearch.org/t/multiple-op-returns-this-time-for-real/315). This will make connecting NFT to the BCP pointed data even easier - one *OP_RETURN* for the SLP and one for the BCP!
 
 Some real code for create/view NFTs with BCP pointed data will be added.
 
 Hope more wallets and exchanges developers agree on the current proposal, so more implementations will be done - other languages etc.
+
+## Donations
+
+Every amount of BCH will help the future development
+
+* BCH: `bitcoincash:qq3t709lskk7tpg5nl8xdfvu8rx4v66ys5cwlxw3ac`
+
+![BCH address](https://gateway.pinata.cloud/ipfs/QmPz1Knaxj5UhJ4jrQjpr6LK9uA5em26NVmC2eX7W4D29D)
