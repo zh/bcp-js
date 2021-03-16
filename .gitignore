@@ -1,0 +1,14 @@
+node_modules/*
+.nyc_output/*
+
+docs/
+coverage/
+
+dist/*
+.env
+config.js
+__tests__
+.eslintcache
+
+# This paragraph comes last. Force includes specific files.
+!docs/README.md

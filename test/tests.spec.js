@@ -1,0 +1,18 @@
+const creatorTests = {
+  text: 'Hello BCP',
+  waifu: 'ec8a11c0d3b0c2c484e5abdd28af70d66206a5cfbf82d888729c53fcacf8d712',
+  ipfs: 'QmZmqLskJmghru919cvU4qSy3L5vc1S2JdzsUXrM17ZqT9',
+  url: 'http://example.com/image.png'
+}
+
+const parserTests = {
+  text: '6a0442435000010201010948656c6c6f20424350',
+  waifu: '6a04424350000164010220ec8a11c0d3b0c2c484e5abdd28af70d66206a5cfbf82d888729c53fcacf8d712',
+  ipfs: '6a0442435000010401042e516d5a6d714c736b4a6d6768727539313963765534715379334c3576633153324a647a735558724d31375a715439',
+  url: '6a0442435000010301031c687474703a2f2f6578616d706c652e636f6d2f696d6167652e706e67'
+}
+
+module.exports = {
+  parserTests,
+  creatorTests
+}

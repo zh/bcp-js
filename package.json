@@ -1,0 +1,57 @@
+{
+  "name": "bcp-js",
+  "version": "1.0.0",
+  "description": "BlockChain Payloads - OP_RETURN saved pointers to data",
+  "main": "lib/index.js",
+  "directories": {
+    "examples": "examples",
+    "lib": "lib"
+  },
+  "files": [
+    "dist/",
+    "examples/"
+  ],
+  "unpkg": "dist/bcp.min.js",
+  "scripts": {
+    "lint": "eslint lib/",
+    "test": "npm run build && nyc mocha",
+    "prebuild": "npm run lint",
+    "build": "browserify lib/index.js --standalone bcp --debug -o dist/bcp.js && uglifyjs dist/bcp.js --compress --source-map content=inline -o dist/bcp.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zh/bcp.git"
+  },
+  "keywords": [
+    "BCH",
+    "SLP",
+    "NFT",
+    "protocol",
+    "op_return",
+    "parser"
+  ],
+  "author": "Stoyan Zhekov <zh@zhware.net>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zh/bcp/issues"
+  },
+  "homepage": "https://github.com/zh/bcp#readme",
+  "dependencies": {
+    "bignumber.js": "^9.0.1"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0",
+    "chai": "^4.3.4",
+    "chai-bytes": "^0.1.2",
+    "eslint-plugin-prettier": "^3.3.1",
+    "mocha": "^8.3.2",
+    "nyc": "^15.1.0",
+    "uglify-es": "^3.3.9"
+  },
+  "nyc": {
+    "include": [
+      "lib"
+    ],
+    "all": true
+  }
+}
