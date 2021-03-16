@@ -1,7 +1,6 @@
 node_modules/*
 .nyc_output/*
 
-docs/
 coverage/
 
 dist/*
@@ -9,6 +8,3 @@ dist/*
 config.js
 __tests__
 .eslintcache
-
-# This paragraph comes last. Force includes specific files.
-!docs/README.md
