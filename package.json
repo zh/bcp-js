@@ -1,15 +1,17 @@
 {
   "name": "bcp-js",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "BlockChain Payloads - OP_RETURN saved pointers to data",
   "main": "lib/index.js",
   "directories": {
     "examples": "examples",
-    "lib": "lib"
+    "lib": "lib",
+    "docs": "docs"
   },
   "files": [
     "dist/",
-    "examples/"
+    "examples/",
+    "docs/"
   ],
   "unpkg": "dist/bcp.min.js",
   "scripts": {
@@ -20,7 +22,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/zh/bcp.git"
+    "url": "git+https://github.com/zh/bcp-js.git"
   },
   "keywords": [
     "BCH",
@@ -33,9 +35,9 @@
   "author": "Stoyan Zhekov <zh@zhware.net>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/zh/bcp/issues"
+    "url": "https://github.com/zh/bcp-js/issues"
   },
-  "homepage": "https://github.com/zh/bcp#readme",
+  "homepage": "https://github.com/zh/bcp-js#readme",
   "dependencies": {
     "bignumber.js": "^9.0.1"
   },
