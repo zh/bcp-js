@@ -1,7 +1,7 @@
 # BlockChain Payloads Protocol Specification
 ### Specification version: 0.1
 ### Date published: March 16, 2021
-### Latest revision: March 16, 2021
+### Latest revision: March 18, 2021
 
 ## Author
 Stoyan Zhekov
@@ -94,7 +94,7 @@ Payload data is specific for every different **BCP source**:
 
 Simple text message can be stored in the blockchain with the following BCP pointer:
 
-* ```OP_RETURN <lokad_id_int = 'SWP\x00'> <bcp_msg_type = 0x02> <bcp_msg_source = 0x01> <source_data_bytes = encoded_text_message>```
+* ```OP_RETURN <lokad_id_int = 'BCP\x00'> <bcp_msg_type = 0x02> <bcp_msg_source = 0x01> <source_data_bytes = encoded_text_message>```
 
 [BCP simple text message (ASM):](https://explorer.bitcoin.com/bch/tx/3828557b917b2aed92b98e875c82908044b0d90ec2f133cb022f4e2d8eecda0a)
 
@@ -104,7 +104,7 @@ Simple text message can be stored in the blockchain with the following BCP point
 
 Short 2s audio file (rain drops), saved to IPFS can be referenced as:
 
-* ```OP_RETURN <lokad_id_int = 'SWP\x00'> <bcp_msg_type = 0x04> <bcp_msg_source = 0x04> <source_data_bytes = ipfs_hash>```
+* ```OP_RETURN <lokad_id_int = 'BCP\x00'> <bcp_msg_type = 0x04> <bcp_msg_source = 0x04> <source_data_bytes = ipfs_hash>```
 
 [BCP audio file on IPFS (ASM):](https://explorer.bitcoin.com/bch/tx/bddb26bb00ef94a8a43361622dd3c4743386b9da01d702ed921fdf9bd4be4860)
 
@@ -123,7 +123,7 @@ will be parsed to (ASM)
 
 ```OP_RETURN 42435000 03 03 687474703a2f2f6578616d706c652e636f6d2f696d6167652e706e67```
 
-* ```OP_RETURN <lokad_id_int = 'SWP\x00'> <bcp_msg_type = 0x03> <bcp_msg_source = 0x03> <source_data_bytes = http://example.com/image.png>```
+* ```OP_RETURN <lokad_id_int = 'BCP\x00'> <bcp_msg_type = 0x03> <bcp_msg_source = 0x03> <source_data_bytes = http://example.com/image.png>```
 
 ## Reference Implementations
 
