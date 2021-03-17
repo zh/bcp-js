@@ -5,6 +5,7 @@ chai.use(chaiBytes);
 
 const {
   BCP,
+  BCP_TYPE_GENERIC,
   BCP_TYPE_TEXT,
   BCP_TYPE_WAIFU,
   BCP_TYPE_AUDIO,
@@ -13,6 +14,7 @@ const {
   BCP_SRC_TXID,
   BCP_SRC_IPFS,
   BCP_SRC_URL,
+  BCP_SRC_ADDR,
 } = require('../lib/index')
 
 const mocha = require('mocha')
@@ -56,4 +58,11 @@ describe('PARSER', () => {
   expect(p.type).to.equal(BCP_TYPE_AUDIO)
   expect(p.source).to.equal(BCP_SRC_URL)
   expect(p.data.url).to.equalBytes(Buffer.from(creatorTests.sip))
+
+  // SLP address (changable objects state)
+  expect(() => bcp.parse(parserTests.slp)).to.not.throw()
+  p = bcp.parse(parserTests.slp)
+  expect(p.type).to.equal(BCP_TYPE_GENERIC)
+  expect(p.source).to.equal(BCP_SRC_ADDR)
+  expect(p.data.address).to.equalBytes(Buffer.from(creatorTests.slp))
 })

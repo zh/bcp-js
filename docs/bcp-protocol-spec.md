@@ -27,7 +27,7 @@ The following presents a simple protocol for creating immutable pointers to on-c
 The methods described in that proposal allows to:
 
 * create unified data payload pointers, which can be saved to the BCH blockchain
-* parse BCH blockchain save pointers and retrieving the data, they refer to 
+* parse BCH blockchain save pointers and retrieving the data, they refer to
 
 ## 1.3 Requirements
 
@@ -74,6 +74,7 @@ The BlockChain Payload (BCP) sources are used to represent different save locati
 * `<bcp_msg_source = 0x02>`: on-chain data, represented by transaction ID
 * `<bcp_msg_source = 0x03>`: URL, standart HTTP (web) location
 * `<bcp_msg_source = 0x04>`: IPFS, represented by IPFS hash of the data
+* `<bcp_msg_source = 0x05>`: BCH or SLP address
 
 ## 2.3 Payload Data
 
@@ -85,6 +86,7 @@ Payload data is specific for every different **BCP source**:
 * `<bcp_msg_source = 0x02>`: TxID - 32 bytes transaction ID
 * `<bcp_msg_source = 0x03>`: standart HTTP URL, starting with *'http://'* or *'https://'*
 * `<bcp_msg_source = 0x04>`: 46 bytes **IPFS hash**, starting with *'Qm'*
+* `<bcp_msg_source = 0x05>`: BCH (*bitcoincash:...*) or SLP (*simpleledger:...*) address
 
 # 3. Process
 
@@ -127,7 +129,7 @@ will be parsed to (ASM)
 
 ## Reference Implementations
 
-The protocol is still under development. The only working implementation in the moment is the [bcp-js](https://github.com/zh/bcp) JavaScript library, so it will be used as a reference for the future implementations. 
+The protocol is still under development. The only working implementation in the moment is the [bcp-js](https://github.com/zh/bcp-js) JavaScript library, so it will be used as a reference for the future implementations.
 
 ### Clients
 
@@ -135,4 +137,4 @@ None currently
 
 ### Libraries
 
-[bcp-js](https://github.com/zh/bcp)
+[bcp-js](https://github.com/zh/bcp-js)

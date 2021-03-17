@@ -5,6 +5,7 @@ chai.use(chaiBytes);
 
 const {
   BCP,
+  BCP_TYPE_GENERIC,
   BCP_TYPE_TEXT,
   BCP_TYPE_WAIFU,
   BCP_TYPE_AUDIO,
@@ -13,6 +14,7 @@ const {
   BCP_SRC_TXID,
   BCP_SRC_IPFS,
   BCP_SRC_URL,
+  BCP_SRC_ADDR,
 } = require('../lib/index')
 
 const mocha = require('mocha')
@@ -46,4 +48,9 @@ describe('CREATOR', () => {
   expect(() => bcp.createAudio(BCP_SRC_URL, creatorTests.sip)).to.not.throw()
   opReturn = bcp.createAudio(BCP_SRC_URL, creatorTests.sip)
   expect(opReturn).to.equalBytes(Buffer.from(parserTests.sip, 'hex'))
+
+  // SLP for changable objects state
+  expect(() => bcp.createState(creatorTests.slp)).to.not.throw()
+  opReturn = bcp.createState(creatorTests.slp)
+  expect(opReturn).to.equalBytes(Buffer.from(parserTests.slp, 'hex'))
 })

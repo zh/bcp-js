@@ -1,6 +1,6 @@
 {
   "name": "bcp-js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "BlockChain Payloads - OP_RETURN saved pointers to data",
   "main": "lib/index.js",
   "directories": {

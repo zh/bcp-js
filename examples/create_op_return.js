@@ -10,6 +10,7 @@ function createBCP () {
     const url = 'http://example.com/image.png'
     const waifuId = 'ec8a11c0d3b0c2c484e5abdd28af70d66206a5cfbf82d888729c53fcacf8d712'
     const sipUri = 'sip:john@example.com'
+    const slpAddress = 'simpleledger:qq2fg599ysqvfefr2ur0z34n2dk6f0aszg5pskpe06'
     const bcp = new BCP()
 
     // Simple text saved to the blockchain
@@ -47,6 +48,12 @@ function createBCP () {
     console.log(`OP_RETURN: ${JSON.stringify(opReturn.toString('hex'), null, 2)}`)
     parsed = bcp.parse(opReturn)
     console.log(`sip: ${JSON.stringify(parsed.data.url.toString(), null, 2)}`)
+
+    // SLP address for implementing changable objects (keeping the state etc.)
+    opReturn = bcp.createState(slpAddress)
+    console.log(`OP_RETURN: ${JSON.stringify(opReturn.toString('hex'), null, 2)}`)
+    parsed = bcp.parse(opReturn)
+    console.log(`address: ${JSON.stringify(parsed.data.address.toString(), null, 2)}`)
   } catch (error) {
     console.error('error in createBCP: ', error)
   }

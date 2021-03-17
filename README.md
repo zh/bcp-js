@@ -92,6 +92,7 @@ The library provides definitions for all BCP types and sources, mentiobed in the
  * *`BCP_SRC_TXID`* - on-chain data, represented by transaction ID
  * *`BCP_SRC_URL`* - URL, standart HTTP (web) location
  * *`BCP_SRC_IPFS`* - IPFS, represented by IPFS hash of the data
+ * *`BCP_SRC_ADDR`* - BCH (*bitcoincash:*) or SLP (*simpleledger:*) address
 
  To use these definitions you need to import them in your sources:
  
@@ -107,7 +108,8 @@ The library provides definitions for all BCP types and sources, mentiobed in the
 * *`createWaifu(data)`* - points to *WAIFU* type NFT tokenId
 * *`createAudio(source, data)`* - points to audio file (*.mp3*, *.ogg* etc.)
 * *`createImage(source, data)`* - points to an image file (*.png*, *.gif* etc.)
-* *`createFromString(str)`* - automatically detects source from the string - URL, IPFS etc.
+* *`createState(address, type = BCP_TYPE_GENERIC)`* - points to BCH or SLP address (*bitcoincash:*, *simpleledger:*)
+* *`createFromString(str)`* - automatically detects source from the string - TxID, IPFS etc.
 
 #### Create BCP for a simple blockchain saved text
 
