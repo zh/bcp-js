@@ -84,7 +84,6 @@ The library provides definitions for all BCP types and sources, mentiobed in the
  * *`BCP_TYPE_AUDIO`* - *.mp3*, *.ogg* etc. audio files
  * *`BCP_TYPE_VIDEO`* - *.mpv*, *.mp4* etc. video files
  * *`BCP_TYPE_JSON`* - JSON formated data - *still not implemented*
- * *`BCP_TYPE_WAIFU`* - WAIFU type NFTs (points to the tokenId)
 
 * **2.) BCP Sources**
 
@@ -95,17 +94,16 @@ The library provides definitions for all BCP types and sources, mentiobed in the
  * *`BCP_SRC_ADDR`* - BCH (*bitcoincash:*) or SLP (*simpleledger:*) address
 
  To use these definitions you need to import them in your sources:
- 
+
  ```js
  const { BCP, BCP_TYPE_IMAGE, BCP_SRC_IPFS } = require('bcp-js')
  ```
 
 ### Methods for BCP creation
 
-* *`create(type, source, data)`* - Need to explicitly specify BCP type and source. All methods below using this method.  
+* *`create(type, source, data)`* - Need to explicitly specify BCP type and source. All methods below using this method.
 * *`createChainText(data)`* - on-chain string data, inside the *OP_RETURN* itself
 * *`createText(source, data)`* - off-chain UFT-8 encoded string (is this needed?)
-* *`createWaifu(data)`* - points to *WAIFU* type NFT tokenId
 * *`createAudio(source, data)`* - points to audio file (*.mp3*, *.ogg* etc.)
 * *`createImage(source, data)`* - points to an image file (*.png*, *.gif* etc.)
 * *`createState(address, type = BCP_TYPE_GENERIC)`* - points to BCH or SLP address (*bitcoincash:*, *simpleledger:*)
@@ -130,7 +128,8 @@ Use a general method, which allow BCP type argument:
 const { BCP_TYPE_AUDIO, BCP_SRC_IPFS } = require('bcp-js')
 const ipfsHash = 'QmZmqLskJmghru919cvU4qSy3L5vc1S2JdzsUXrM17ZqT9'
 const opReturn = bcp.create(BCP_TYPE_AUDIO, BCP_SRC_IPFS, ipfsHash)
-console.log(opReturn.toString('hex')) // 6a0442435000010401042e516d5a6d714c736b4a6d6768727539313963765534715379334c3576633153324a647a735558724d31375a715439
+console.log(opReturn.toString('hex'))
+// 6a0442435000010401042e516d5a6d714c736b4a6d6768727539313963765534715379334c3576633153324a647a735558724d31375a715439
 ```
 
 or use specific method for the given BCP type
@@ -140,14 +139,22 @@ const ipfsHash = 'QmZmqLskJmghru919cvU4qSy3L5vc1S2JdzsUXrM17ZqT9'
 const opReturn = bcp.createAudio(BCP_SRC_IPFS, ipfsHash)
 ```
 
-#### Create BCP to a WAIFU type NFT
+#### Create BCP to SLP address
 
-[WAIFU type of NFTs](https://waifu.camp/) became pretty popular recently, so they got special type in the library. They are SLP NFT children tokens, originating from the same NFT group, with images saved to a specific URL (same for all tokens, image file name is the tokenId). There is nothing about the images URL in the tokens itselves. In order to be viewed, the server URL should be provided separately for every NFT group. BCP will contain only the tokenId of the already created NFT child.
+Creating a pointer to BCH or SLP address allow simulatiion of mutable (changable) objects, for example tracking the state of some game player etc. The BCP itself is immutable, saved on the blockchaain, but changes in the object can be tracked by sending transaction to the address, encoded in the BCP. Like items a game player owns, payments for given contract etc.
 
 ```js
-const waifuId = 'ec8a11c0d3b0c2c484e5abdd28af70d66206a5cfbf82d888729c53fcacf8d712' // tokenId
-const opReturn = bcp.createWaifu(waifuId)
-console.log(opReturn.toString('hex')) // 6a04424350000164010220ec8a11c0d3b0c2c484e5abdd28af70d66206a5cfbf82d888729c53fcacf8d712
+const { BCP_SRC_ADDR } = require('bcp-js')
+const slpAddress = 'simpleledger:qq2fg599ysqvfefr2ur0z34n2dk6f0aszg5pskpe06'
+const opReturn = bcp.createState(slpAddress)
+console.log(opReturn.toString('hex'))
+// 6a0442435000010101053773696d706c656c65646765723a71713266673539397973717666656672327572307a33346e32646b36663061737a673570736b70653036
+```
+
+If you know the type of transactions, that will be send to the address above, you can also add it to the parameters. For example changable image gallery on IPFS: on adding/changing images, just **send a transaction to the provided address** with the new image IPFS hash (*Qm...*)
+
+```js
+const opReturn = bcp.createState(slpAddress, BCP_TYPE_IMAGE)
 ```
 
 ### Methods for parsing BCP

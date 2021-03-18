@@ -64,7 +64,6 @@ The BlockChain Payload (BCP) types are used to represent different kinds of cont
  * `<bcp_msg_type = 0x04>`: Audio - *.mp3*, *.ogg* etc. audio files
  * `<bcp_msg_type = 0x05>`: Video - *.mpv*, *.mp4* etc. video files
  * `<bcp_msg_type = 0x06>`: JSON formated data
- * `<bcp_msg_type = 0x64>`: WAIFU type NFTs (points to the tokenId)
 
 ## 2.2 Payload Sources
 

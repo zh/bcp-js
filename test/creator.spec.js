@@ -7,7 +7,6 @@ const {
   BCP,
   BCP_TYPE_GENERIC,
   BCP_TYPE_TEXT,
-  BCP_TYPE_WAIFU,
   BCP_TYPE_AUDIO,
   BCP_TYPE_IMAGE,
   BCP_SRC_NONE,
@@ -28,11 +27,6 @@ describe('CREATOR', () => {
   expect(() => bcp.createChainText(creatorTests.text)).to.not.throw()
   let opReturn = bcp.createChainText('Hello BCP')
   expect(opReturn).to.equalBytes(Buffer.from(parserTests.text, 'hex'))
-
-  // WAIFU type - image with specific TxID
-  expect(() => bcp.createWaifu(creatorTests.waifu)).to.not.throw()
-  opReturn = bcp.createWaifu(creatorTests.waifu)
-  expect(opReturn).to.equalBytes(Buffer.from(parserTests.waifu, 'hex'))
 
   // audio file on IPFS - Qm... hash on IPFS
   expect(() => bcp.createAudio(BCP_SRC_IPFS, creatorTests.ipfs)).to.not.throw()

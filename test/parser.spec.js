@@ -7,7 +7,6 @@ const {
   BCP,
   BCP_TYPE_GENERIC,
   BCP_TYPE_TEXT,
-  BCP_TYPE_WAIFU,
   BCP_TYPE_AUDIO,
   BCP_TYPE_IMAGE,
   BCP_SRC_NONE,
@@ -30,13 +29,6 @@ describe('PARSER', () => {
   expect(p.type).to.equal(BCP_TYPE_TEXT)
   expect(p.source).to.equal(BCP_SRC_NONE)
   expect(p.data).to.equalBytes(Buffer.from(creatorTests.text))
-
-  // WAIFU type - image with specific TxID
-  expect(() => bcp.parse(parserTests.waifu)).to.not.throw()
-  p = bcp.parse(parserTests.waifu)
-  expect(p.type).to.equal(BCP_TYPE_WAIFU)
-  expect(p.source).to.equal(BCP_SRC_TXID)
-  expect(p.data.tokenId).to.equalBytes(Buffer.from(creatorTests.waifu, 'hex'))
 
   // audio file on IPFS - Qm... hash on IPFS
   expect(() => bcp.parse(parserTests.ipfs)).to.not.throw()
