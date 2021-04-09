@@ -74,7 +74,7 @@ const bcp = new BCP()
 
 ### BCP types and sources
 
-The library provides definitions for all BCP types and sources, mentiobed in the [protocol specification]((docs/bcp-protocol-spec.md)):
+The library provides definitions for all BCP types and sources, mentioned in the [protocol specification]((docs/bcp-protocol-spec.md)):
 
 * **1.) BCP Types**
 
@@ -89,7 +89,7 @@ The library provides definitions for all BCP types and sources, mentiobed in the
 
  * *`BCP_SRC_NONE`* - data is inside the *OP_RETURN* itself
  * *`BCP_SRC_TXID`* - on-chain data, represented by transaction ID
- * *`BCP_SRC_URL`* - URL, standart HTTP (web) location
+ * *`BCP_SRC_URL`* - URL, standard HTTP (web) location
  * *`BCP_SRC_IPFS`* - IPFS, represented by IPFS hash of the data
  * *`BCP_SRC_ADDR`* - BCH (*bitcoincash:*) or SLP (*simpleledger:*) address
 
