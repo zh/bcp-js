@@ -74,7 +74,7 @@ const bcp = new BCP()
 
 ### BCP types and sources
 
-The library provides definitions for all BCP types and sources, mentioned in the [protocol specification]((docs/bcp-protocol-spec.md)):
+The library provides definitions for all BCP types and sources, mentioned in the [protocol specification](docs/bcp-protocol-spec.md):
 
 * **1.) BCP Types**
 
