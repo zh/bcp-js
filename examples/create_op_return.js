@@ -8,7 +8,8 @@ function createBCP () {
   try {
     const ipfsHash = 'QmZmqLskJmghru919cvU4qSy3L5vc1S2JdzsUXrM17ZqT9'
     const url = 'http://example.com/image.png'
-    const sipUri = 'sip:john@example.com'
+    const sipURL = 'sip:john@example.com'
+    const ipfsURL = 'ipfs://QmTYqoPYf7DiVebTnvwwFdTgsYXg2RnuPrt8uddjfW2kHS'
     const slpAddress = 'simpleledger:qq2fg599ysqvfefr2ur0z34n2dk6f0aszg5pskpe06'
     const bcp = new BCP()
 
@@ -24,11 +25,21 @@ function createBCP () {
     parsed = bcp.parse(opReturn)
     console.log(`hash: ${JSON.stringify(parsed.data.hash.toString(), null, 2)}`)
 
+    // Monkey video on IPFS (URL source)
+    opReturn = bcp.createVideo(BCP_SRC_URL, ipfsURL)
+    console.log(`OP_RETURN: ${JSON.stringify(opReturn.toString('hex'), null, 2)}`)
+    parsed = bcp.parse(opReturn)
+    console.log(`url: ${JSON.stringify(parsed.data.url.toString(), null, 2)}`)
+    let parsedURL = JSON.parse(parsed.data.parsed.toString())
+    console.log(`parsed: ${JSON.stringify(parsedURL, null, 2)}`)
+
     // Image on the usual HTTP URL
     opReturn = bcp.createImage(BCP_SRC_URL, url)
     console.log(`OP_RETURN: ${JSON.stringify(opReturn.toString('hex'), null, 2)}`)
     parsed = bcp.parse(opReturn)
     console.log(`url: ${JSON.stringify(parsed.data.url.toString(), null, 2)}`)
+    parsedURL = JSON.parse(parsed.data.parsed.toString())
+    console.log(`parsed: ${JSON.stringify(parsedURL, null, 2)}`)
 
     // Same image, BCP automatically detected
     opReturn = bcp.createFromString(ipfsHash)
@@ -37,10 +48,12 @@ function createBCP () {
     console.log(`url: ${JSON.stringify(parsed.data.hash.toString(), null, 2)}`)
 
     // SIP URI for voice call
-    opReturn = bcp.createAudio(BCP_SRC_URL, sipUri)
+    opReturn = bcp.createAudio(BCP_SRC_URL, sipURL)
     console.log(`OP_RETURN: ${JSON.stringify(opReturn.toString('hex'), null, 2)}`)
     parsed = bcp.parse(opReturn)
     console.log(`sip: ${JSON.stringify(parsed.data.url.toString(), null, 2)}`)
+    parsedURL = JSON.parse(parsed.data.parsed.toString())
+    console.log(`parsed: ${JSON.stringify(parsedURL, null, 2)}`)
 
     // SLP address for implementing changable objects (keeping the state etc.)
     opReturn = bcp.createState(slpAddress)
