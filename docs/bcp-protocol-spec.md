@@ -1,7 +1,7 @@
 # BlockChain Payloads Protocol Specification
-### Specification version: 0.1
+### Specification version: 0.2
 ### Date published: March 16, 2021
-### Latest revision: March 18, 2021
+### Latest revision: May 4, 2021
 
 ## Author
 Stoyan Zhekov
@@ -71,8 +71,8 @@ The BlockChain Payload (BCP) sources are used to represent different save locati
 
 * `<bcp_msg_source = 0x01>`: data is inside the *OP_RETURN* itself
 * `<bcp_msg_source = 0x02>`: on-chain data, represented by transaction ID
-* `<bcp_msg_source = 0x03>`: URL, standart HTTP (web) location
-* `<bcp_msg_source = 0x04>`: IPFS, represented by IPFS hash of the data
+* `<bcp_msg_source = 0x03>`: URL, off-chain storage
+* `<bcp_msg_source = 0x04>`: IPFS, represented by IPFS hash of the data (*depricated, use URL instead*)
 * `<bcp_msg_source = 0x05>`: BCH or SLP address
 
 ## 2.3 Payload Data
@@ -83,8 +83,8 @@ Payload data is specific for every different **BCP source**:
 
 * `<bcp_msg_source = 0x01>`: **UTF-8 encoded** (aka 'clear text') data inside the *OP_RETURN* itseld
 * `<bcp_msg_source = 0x02>`: TxID - 32 bytes transaction ID
-* `<bcp_msg_source = 0x03>`: standart HTTP URL, starting with *'http://'* or *'https://'*
-* `<bcp_msg_source = 0x04>`: 46 bytes **IPFS hash**, starting with *'Qm'*
+* `<bcp_msg_source = 0x03>`: standart URL, format *'scheme://authority'*, for example *'http://'* or *'ipfs://'*
+* `<bcp_msg_source = 0x04>`: 46 bytes **IPFS hash**, starting with *'Qm'* (*depricated, use URL instead*)
 * `<bcp_msg_source = 0x05>`: BCH (*bitcoincash:...*) or SLP (*simpleledger:...*) address
 
 # 3. Process
@@ -111,6 +111,13 @@ Short 2s audio file (rain drops), saved to IPFS can be referenced as:
 
 ```OP_RETURN 42435000 04 04 516d5a6d714c736b4a6d6768727539313963765534715379334c3576633153324a647a735558724d31375a715439```
 
+### 3.1.3 Video file on IPFS (*ipfs://* URL source)
+
+* ```OP_RETURN <lokad_id_int = 'BCP\x00'> <bcp_msg_type = 0x05> <bcp_msg_source = 0x03> <source_data_bytes = ipfs://ipfs_hash>```
+
+[BCP video file on IPFS URL (ASM):](https://explorer.bitcoin.com/bch/tx/a32ca6ffd935c461260b14e8fafb680b7d53fa22a6e63e31c88a78b2231ad1c3)
+
+```OP_RETURN 42435000 05 03 697066733a2f2f516d5459716f505966374469566562546e767777466454677359586732526e75507274387564646a6657326b4853```
 
 ## 3.2 Parse BCP formated OP_RETURN
 
@@ -132,8 +139,9 @@ The protocol is still under development. The only working implementation in the 
 
 ### Clients
 
-None currently
+* [nft-checker](https://github.com/zh/nft-checker) - Check NFT tokens information (groups, media etc.)
 
 ### Libraries
 
-[bcp-js](https://github.com/zh/bcp-js)
+* [bcp-js](https://github.com/zh/bcp-js) - Simple core protocol parser implementation
+* [bcp-ext-js](https://github.com/zh/bcp-ext-js) - Companion library - classes, NFTs etc.

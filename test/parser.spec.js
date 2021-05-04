@@ -8,6 +8,7 @@ const {
   BCP_TYPE_GENERIC,
   BCP_TYPE_TEXT,
   BCP_TYPE_AUDIO,
+  BCP_TYPE_VIDEO,
   BCP_TYPE_IMAGE,
   BCP_SRC_NONE,
   BCP_SRC_TXID,
@@ -43,6 +44,16 @@ describe('PARSER', () => {
   expect(p.type).to.equal(BCP_TYPE_IMAGE)
   expect(p.source).to.equal(BCP_SRC_URL)
   expect(p.data.url).to.equalBytes(Buffer.from(creatorTests.url))
+
+  // video on IPFS (URL source)
+  expect(() => bcp.parse(parserTests.ipfsURL)).to.not.throw()
+  p = bcp.parse(parserTests.ipfsURL)
+  expect(p.type).to.equal(BCP_TYPE_VIDEO)
+  expect(p.source).to.equal(BCP_SRC_URL)
+  expect(p.data.url).to.equalBytes(Buffer.from(creatorTests.ipfsURL))
+  parsedURL = JSON.parse(p.data.parsed.toString())
+  expect(parsedURL).have.property('scheme').to.equal('ipfs')
+  expect(parsedURL).have.property('authority').to.equal(creatorTests.ipfsURL.split('://')[1])
 
   // SIP URI for voice call
   expect(() => bcp.parse(parserTests.sip)).to.not.throw()

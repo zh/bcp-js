@@ -33,6 +33,11 @@ describe('CREATOR', () => {
   opReturn = bcp.createAudio(BCP_SRC_IPFS, creatorTests.ipfs)
   expect(opReturn).to.equalBytes(Buffer.from(parserTests.ipfs, 'hex'))
 
+  // video on IPFS URL
+  expect(() => bcp.createVideo(BCP_SRC_URL, creatorTests.ipfsURL)).to.not.throw()
+  opReturn = bcp.createVideo(BCP_SRC_URL, creatorTests.ipfsURL)
+  expect(opReturn).to.equalBytes(Buffer.from(parserTests.ipfsURL, 'hex'))
+
   // image on HTTP URL
   expect(() => bcp.createImage(BCP_SRC_URL, creatorTests.url)).to.not.throw()
   opReturn = bcp.createImage(BCP_SRC_URL, creatorTests.url)

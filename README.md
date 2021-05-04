@@ -89,8 +89,8 @@ The library provides definitions for all BCP types and sources, mentioned in the
 
  * *`BCP_SRC_NONE`* - data is inside the *OP_RETURN* itself
  * *`BCP_SRC_TXID`* - on-chain data, represented by transaction ID
- * *`BCP_SRC_URL`* - URL, standard HTTP (web) location
- * *`BCP_SRC_IPFS`* - IPFS, represented by IPFS hash of the data
+ * *`BCP_SRC_URL`* - URL, off-chain storage - *https://...*, *ipfs://...* etc.
+ * *`BCP_SRC_IPFS`* - IPFS, represented by IPFS hash of the data (*depricated, use BCP_SRC_URL instead*)
  * *`BCP_SRC_ADDR`* - BCH (*bitcoincash:*) or SLP (*simpleledger:*) address
 
  To use these definitions you need to import them in your sources:
